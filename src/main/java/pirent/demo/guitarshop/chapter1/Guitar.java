@@ -1,17 +1,21 @@
 package pirent.demo.guitarshop.chapter1;
 
+import pirent.demo.guitarshop.chapter1.enhancement.Builder;
+import pirent.demo.guitarshop.chapter1.enhancement.Type;
+import pirent.demo.guitarshop.chapter1.enhancement.Wood;
+
 public class Guitar {
 
 	private String serialNumber;
 	private double price;
-	private String builder;
+	private Builder builder;
 	private String model;
-	private String type;
-	private String backWood;
-	private String topWood;
+	private Type type;
+	private Wood backWood;
+	private Wood topWood;
 
-	public Guitar(String serialNumber, double price, String builder,
-			String model, String type, String backWood, String topWood) {
+	public Guitar(String serialNumber, double price, Builder builder,
+			String model, Type type, Wood backWood, Wood topWood) {
 		super();
 		this.serialNumber = serialNumber;
 		this.price = price;
@@ -34,7 +38,7 @@ public class Guitar {
 		return serialNumber;
 	}
 
-	public String getBuilder() {
+	public Builder getBuilder() {
 		return builder;
 	}
 
@@ -42,15 +46,15 @@ public class Guitar {
 		return model;
 	}
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public String getBackWood() {
+	public Wood getBackWood() {
 		return backWood;
 	}
 
-	public String getTopWood() {
+	public Wood getTopWood() {
 		return topWood;
 	}
 }

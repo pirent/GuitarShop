@@ -3,6 +3,10 @@ package pirent.demo.guitarshop.chapter1;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import pirent.demo.guitarshop.chapter1.enhancement.Builder;
+import pirent.demo.guitarshop.chapter1.enhancement.Type;
+import pirent.demo.guitarshop.chapter1.enhancement.Wood;
+
 public class FindGuitarTester {
 
 	private static Inventory inventory;
@@ -10,18 +14,18 @@ public class FindGuitarTester {
 	@BeforeClass
 	public static void setupInventory() {
 		inventory = new Inventory();
-		inventory.addGuitar("101", 101, "Builder 1", "Model 1", "Acoustic",
-				"Back Wood 1", "Top Wood 1");
-		inventory.addGuitar("102", 102, "Builder 2", "Model 2", "Acoustic",
-				"Back Wood 2", "Top Wood 2");
-		inventory.addGuitar("103", 103, "Builder 3", "Model 3", "Acoustic",
-				"Back Wood 3", "Top Wood 3");
+		inventory.addGuitar("101", 101, Builder.FENDER, "Model 1", Type.ACOUSTIC,
+				Wood.CEDAR, Wood.COCOBOLO);
+		inventory.addGuitar("102", 102, Builder.MARTIN, "Model 2", Type.ACOUSTIC,
+				Wood.ALDER, Wood.CEDAR);
+		inventory.addGuitar("103", 103, Builder.GIBSON, "Model 3", Type.ELECTRIC,
+				Wood.ADIRONDACK, Wood.CEDAR);
 	}
 
 	@Test
 	public void findGuitar() {
-		Guitar whatErikLikes = new Guitar("", 0, "Builder 3", "", "Acoustic",
-				"Back Wood 2", "Top Wood 2");
+		Guitar whatErikLikes = new Guitar("", 0, Builder.FENDER, "Model 2", Type.ACOUSTIC,
+				Wood.CEDAR, Wood.CEDAR);
 
 		Guitar guitar = inventory.seach(whatErikLikes);
 		if (guitar != null) {
