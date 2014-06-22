@@ -18,18 +18,18 @@ public class FindGuitarTester {
 	@BeforeClass
 	public static void setupInventory() {
 		inventory = new Inventory();
-		inventory.addGuitar("V95693", 1499.95, Builder.FENDER, "Stratocastor", Type.ELECTRIC,
-				Wood.ALDER, Wood.ALDER);
-		inventory.addGuitar("102", 102, Builder.MARTIN, "Model 2", Type.ACOUSTIC,
-				Wood.ALDER, Wood.CEDAR);
-		inventory.addGuitar("V9512", 1549.95, Builder.FENDER, "Stratocastor", Type.ELECTRIC,
-				Wood.ALDER, Wood.ALDER);
+		inventory.addGuitar("V95693", 1499.95, new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC,
+				Wood.ALDER, Wood.ALDER, 6) );
+		inventory.addGuitar("102", 102, new GuitarSpec(Builder.MARTIN, "Model 2", Type.ACOUSTIC,
+				Wood.ALDER, Wood.CEDAR, 10));
+		inventory.addGuitar("V9512", 1549.95, new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC,
+				Wood.ALDER, Wood.ALDER, 6));
 	}
 
 	@Test
 	public void findGuitar() {
 		GuitarSpec whatErikLikes = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC,
-				Wood.ALDER, Wood.ALDER);
+				Wood.ALDER, Wood.ALDER, 6);
 
 		List matchingGuitars = inventory.seach(whatErikLikes);
 		if (matchingGuitars != null) {
@@ -37,10 +37,10 @@ public class FindGuitarTester {
 			for (Iterator i = matchingGuitars.iterator(); i.hasNext(); ) {
 				Guitar guitar = (Guitar) i.next();
 				GuitarSpec spec = guitar.getSpec();
-				sb.append("\n We have a ").append(spec.getBuilder()).append(" ").append(spec.getModel()).append(" ").append(spec.getType()).append(" guitar:\n");
-				sb.append(spec.getBackWood()).append(" back and sides,\n");
-				sb.append(spec.getTopWood()).append(" top.\n");
-				sb.append("You can have it for only $").append(guitar.getPrice()).append("\n-----");
+				sb.append("\n We have a ").append(spec.getBuilder()).append(" ").append(spec.getModel()).append(" ").append(spec.getType()).append(" guitar:");
+				sb.append("\n  ").append(spec.getBackWood()).append(" back and sides,");
+				sb.append("\n  ").append(spec.getTopWood()).append(" top.");
+				sb.append("\n You can have it for only $").append(guitar.getPrice()).append("\n ------------");
 			}
 			System.out.println(sb.toString());
 		} else {
