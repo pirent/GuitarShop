@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import pirent.demo.guitarshop.chapter1.enhancement.Builder;
+import pirent.demo.guitarshop.chapter1.enhancement.GuitarSpec;
 import pirent.demo.guitarshop.chapter1.enhancement.Type;
 import pirent.demo.guitarshop.chapter1.enhancement.Wood;
 
@@ -19,8 +20,7 @@ public class Inventory {
 
 	public void addGuitar(String serialNumber, double price, Builder builder,
 			String model, Type type, Wood backWood, Wood topWood) {
-		Guitar guitar = new Guitar(serialNumber, price, builder, model, type,
-				backWood, topWood);
+		Guitar guitar = new Guitar(serialNumber, price, new GuitarSpec(builder, model, type, backWood, topWood));
 		guitars.add(guitar);
 	}
 
@@ -39,32 +39,33 @@ public class Inventory {
 	 * @param searchGuitar
 	 * @return
 	 */
-	public List seach(Guitar searchGuitar) {
+	public List seach(GuitarSpec searchSpec) {
 		List result = new ArrayList();
 		for (Iterator it = guitars.iterator(); it.hasNext();) {
 			Guitar guitar = (Guitar) it.next();
+			GuitarSpec guitarSpec = guitar.getSpec();
 
 			// Ignore serial number because it is unique
 			// Ignore price since that's unique
-			if (searchGuitar.getBuilder() != guitar.getBuilder()) {
+			if (searchSpec.getBuilder() != guitarSpec.getBuilder()) {
 				continue;
 			}
 
-			String model = searchGuitar.getModel().toLowerCase();
+			String model = searchSpec.getModel().toLowerCase();
 			if ((model != null) && (!model.equals(""))
-					&& (!model.equals(guitar.getModel().toLowerCase()))) {
+					&& (!model.equals(guitarSpec.getModel().toLowerCase()))) {
 				continue;
 			}
 
-			if (searchGuitar.getType() != guitar.getType()) {
+			if (searchSpec.getType() != guitarSpec.getType()) {
 				continue;
 			}
 
-			if (searchGuitar.getBackWood() != guitar.getBackWood()) {
+			if (searchSpec.getBackWood() != guitarSpec.getBackWood()) {
 				continue;
 			}
 
-			if (searchGuitar.getTopWood() != guitar.getTopWood()) {
+			if (searchSpec.getTopWood() != guitarSpec.getTopWood()) {
 				continue;
 			}
 			result.add(guitar);
