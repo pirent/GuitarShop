@@ -1,5 +1,6 @@
 package pirent.demo.guitarshop.chapter1;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,13 +35,12 @@ public class Inventory {
 	}
 
 	/**
-	 * This method is a bit of mess...it compares each property of Guitar object
-	 * it's passed in to each Guitar object in Rick's inventory.
 	 * 
 	 * @param searchGuitar
 	 * @return
 	 */
-	public Guitar seach(Guitar searchGuitar) {
+	public List seach(Guitar searchGuitar) {
+		List result = new ArrayList();
 		for (Iterator it = guitars.iterator(); it.hasNext();) {
 			Guitar guitar = (Guitar) it.next();
 
@@ -67,8 +67,9 @@ public class Inventory {
 			if (searchGuitar.getTopWood() != guitar.getTopWood()) {
 				continue;
 			}
+			result.add(guitar);
 		}
 
-		return null;
+		return result;
 	}
 }
